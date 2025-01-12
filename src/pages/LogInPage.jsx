@@ -2,18 +2,19 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, EyeClosed, Eye, LoaderCircle } from "lucide-react";
+import { useUserStore } from "../store/useUserStore";
 
 const LogInPage = () => {
-  const loading = false;
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const { login, loading } = useUserStore();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    login(formData);
   };
 
   return (
@@ -56,7 +57,7 @@ const LogInPage = () => {
                 setFormData({ ...formData, email: e.target.value })
               }
               placeholder="Enter Your Email"
-              className="placeholder:text-white bg-transparent outline-none"
+              className="placeholder:text-white  w-full bg-transparent outline-none [&:-webkit-autofill]:bg-transparent [&:-webkit-autofill]:text-white [&:-webkit-autofill]:shadow-[0_0_0_30px_rgb(120_113_108)_inset]"
             />
           </div>
           {/* password field */}
@@ -93,7 +94,7 @@ const LogInPage = () => {
                 setFormData({ ...formData, password: e.target.value })
               }
               placeholder="Enter Your Password"
-              className="placeholder:text-white bg-transparent outline-none"
+              className="placeholder:text-white bg-transparent outline-none [&:-webkit-autofill]:bg-transparent [&:-webkit-autofill]:text-white [&:-webkit-autofill]:shadow-[0_0_0_30px_rgb(120_113_108)_inset]"
             />
           </div>
           {/* submit button */}
