@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Eye, EyeClosed, Mail, User, UserPlus } from "lucide-react";
+import { Eye, EyeClosed, LoaderCircle, Mail, User } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const SignUpPage = () => {
@@ -26,13 +26,18 @@ const SignUpPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="mt-3 text-center text-3xl font-extrabold text-zinc-300 hover:text-red-600">
-          Create Your Account
+        <h2 className="mt-3 text-center text-3xl font-extrabold text-zinc-300">
+          Create Your Account !
         </h2>
       </motion.div>
       {/* name field */}
-      <div className="flex flex-col my-3 bg-stone-900 rounded-md py-8 px-4 sm:mx-auto sm:w-full sm:max-w-md ">
-        <form className="space-y-4 flex flex-col" onSubmit={handleSubmit}>
+      <motion.div
+        initial={{ opacity: 0, y: +20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="flex flex-col my-3 bg-stone-900 rounded-md py-8 px-4 sm:mx-auto sm:w-full sm:max-w-md shadow-lg "
+      >
+        <form className=" flex flex-col" onSubmit={handleSubmit}>
           <label
             htmlFor="name"
             className="text-white text-sm block font-medium"
@@ -41,7 +46,7 @@ const SignUpPage = () => {
           </label>
           <div className=" relative rounded-md shadow-sm flex bg-stone-500 px-2 py-2 mb-4">
             <div className=" flex items-center pointer-events-none">
-              <User className="h-5 w-5 text-white mr-2 " aria-hidden="true" />
+              <User className="h-5 w-5 text-white mr-2 " />
             </div>
             <input
               type="text"
@@ -64,7 +69,7 @@ const SignUpPage = () => {
           </label>
           <div className=" relative rounded-md shadow-sm flex bg-stone-500 px-2 py-2">
             <div className=" flex items-center pointer-events-none">
-              <Mail className="h-5 w-5 text-white mr-2 " aria-hidden="true" />
+              <Mail className="h-5 w-5 text-white mr-2 " />
             </div>
             <input
               type="text"
@@ -122,7 +127,7 @@ const SignUpPage = () => {
           >
             Confirm Password
           </label>
-          <div className=" relative rounded-md shadow-sm flex bg-stone-500 px-2 py-2">
+          <div className=" relative rounded-md shadow-sm flex bg-stone-500 px-2 py-2 mb-4 ">
             <div className=" flex items-center cursor-pointer ">
               {passwordVisible ? (
                 <EyeClosed
@@ -155,17 +160,24 @@ const SignUpPage = () => {
           {/* submit button */}
           <button
             type="submit"
-            className="w-full flex items-center bg-stone-300 hover:bg-stone-800 hover:text-white py-2  transition-all duration-300 ease-in-out"
+            disabled={loading}
+            className=" mt-5 w-full flex justify-center items-center bg-stone-300 text-stone-900 hover:bg-stone-800 hover:text-white py-2  transition-all duration-300 ease-in-out rounded-md disabled:cursor-not-allowed"
           >
-            <UserPlus className="h-5 w-5" />
-            <span>Sign Up</span>
+            {loading ? (
+              <>
+                <LoaderCircle className="mr-2 h-5 2-5 animate-spin" />
+                <p>loading...</p>
+              </>
+            ) : (
+              <span>Sign Up</span>
+            )}
           </button>
         </form>
-      </div>
+      </motion.div>
       <div className=" text-center text-sm font-medium">
         <span>Already have an account ? </span>
-        <Link to="/login">
-          <span className="text-stone-950">Login here</span>
+        <Link to="/login" className="text-stone-200 hover:text-stone-400">
+          <span className="underline">Login here</span>
         </Link>
       </div>
     </div>
