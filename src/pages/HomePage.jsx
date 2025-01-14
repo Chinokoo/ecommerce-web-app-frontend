@@ -1,6 +1,6 @@
 import CategoryItem from "../components/CategoryItem";
 const categories = [
-  { href: "/bags", name: "Jeans", imageUrl: "/jeans.webp" },
+  { href: "/bags", name: "Bags", imageUrl: "/bags.webp" },
   { href: "/shoes", name: "Shoes", imageUrl: "/shoes.jpg" },
   { href: "/trousers", name: "Trousers", imageUrl: "/trouser.jpg" },
   { href: "/shirts", name: "Shirts", imageUrl: "/shirt.jpg" },
