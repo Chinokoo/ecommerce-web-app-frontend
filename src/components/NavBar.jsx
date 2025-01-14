@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Lock, LogOut, ShoppingCart, UserPlus } from "lucide-react";
+import { Lock, LogOut, ShoppingCart, UserCheck, UserPlus } from "lucide-react";
 import { useUserStore } from "../store/useUserStore";
 
 const NavBar = () => {
@@ -12,7 +12,8 @@ const NavBar = () => {
         to={"/"}
         className="text-2xl font-bold text-white hover:text-neutral-300 transition-all duration-300 ease-in-out items-center space-x-2 flex"
       >
-        Men&apos;s Wear
+        <img src="/mens_wear.png" alt="mens fashion" height={30} width={30} />
+        <span> Men&apos;s Wear</span>
       </Link>
       <nav className="flex flex-wrap items-center gap-4">
         {user && (
@@ -61,6 +62,15 @@ const NavBar = () => {
           >
             <UserPlus className="mr-1" size={18} />
             <span className="hidden sm:inline  ">Sign Up</span>
+          </Link>
+        )}
+        {!user && (
+          <Link
+            to="/login"
+            className="bg-neutral-200 hover:bg-neutral-500 text-stone-900 hover:text-stone-300 px-3 py-2 rounded-md font-medium transition duration-300 ease-in-out flex "
+          >
+            <UserCheck className="mr-1" size={18} />
+            <span className="hidden sm:inline  ">Log In</span>
           </Link>
         )}
       </nav>
