@@ -109,7 +109,7 @@ const LogInPage = () => {
                 <p>loading...</p>
               </>
             ) : (
-              <span>Sign Up</span>
+              <span>Log In</span>
             )}
           </button>
         </form>

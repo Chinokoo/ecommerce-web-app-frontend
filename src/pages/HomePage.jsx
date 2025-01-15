@@ -1,16 +1,16 @@
 import CategoryItem from "../components/CategoryItem";
 const categories = [
-  { href: "/bags", name: "Bags", imageUrl: "/bags.webp" },
-  { href: "/shoes", name: "Shoes", imageUrl: "/shoes.jpg" },
-  { href: "/trousers", name: "Trousers", imageUrl: "/trouser.jpg" },
-  { href: "/shirts", name: "Shirts", imageUrl: "/shirt.jpg" },
-  { href: "/sweaters", name: "Sweaters", imageUrl: "/sweaters.webp" },
-  { href: "/watches", name: "Watches", imageUrl: "/watch.jpg" },
-  { href: "/glasses", name: "Glasses", imageUrl: "/glasses.jpg" },
-  { href: "/suits", name: "Suits", imageUrl: "/suit.jpg" },
-  { href: "/socks", name: "Socks", imageUrl: "/socks.webp" },
-  { href: "/briefs", name: "Briefs", imageUrl: "/briefs.webp" },
-  { href: "/jeans", name: "Jeans", imageUrl: "/jeans.webp" },
+  { href: "/Bags", name: "Bags", imageUrl: "/bags.webp" },
+  { href: "/Shoes", name: "Shoes", imageUrl: "/shoes.jpg" },
+  { href: "/Trousers", name: "Trousers", imageUrl: "/trouser.jpg" },
+  { href: "/Shirts", name: "Shirts", imageUrl: "/shirt.jpg" },
+  { href: "/Sweaters", name: "Sweaters", imageUrl: "/sweaters.webp" },
+  { href: "/Watches", name: "Watches", imageUrl: "/watch.jpg" },
+  { href: "/Glasses", name: "Glasses", imageUrl: "/glasses.jpg" },
+  { href: "/Suits", name: "Suits", imageUrl: "/suit.jpg" },
+  { href: "/Socks", name: "Socks", imageUrl: "/socks.webp" },
+  { href: "/Briefs", name: "Briefs", imageUrl: "/briefs.webp" },
+  { href: "/Jeans", name: "Jeans", imageUrl: "/jeans.webp" },
 ];
 
 const HomePage = () => {

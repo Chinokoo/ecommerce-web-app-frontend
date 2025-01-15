@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Loader, PlusSquare, Upload } from "lucide-react";
+import { useProductStore } from "../store/useProductStore";
 
 const categories = [
   "Bags",
@@ -24,7 +25,7 @@ const CreateProduct = () => {
     category: "",
     image: "",
   });
-  const loading = false;
+  const { createProduct, loading } = useProductStore();
 
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -40,7 +41,14 @@ const CreateProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // handle form submission here
-    console.log(newProduct);
+    createProduct(newProduct);
+    setNewProduct({
+      name: "",
+      description: "",
+      price: 0,
+      category: "",
+      image: "",
+    });
   };
 
   return (
@@ -134,7 +142,10 @@ const CreateProduct = () => {
         </div>
         <button
           type="submit"
-          className="flex items-center justify-center gap-2 mt-5 py-2 rounded-md text-stone-900 bg-stone-300 hover:bg-stone-500 hover:text-stone-200"
+          disabled={loading}
+          className={`flex items-center justify-center gap-2 mt-5 py-2 rounded-md text-stone-900 bg-stone-300 hover:bg-stone-500 hover:text-stone-200 ${
+            loading ? "cursor-not-allowed" : "cursor-pointer"
+          } `}
         >
           {loading ? (
             <>
