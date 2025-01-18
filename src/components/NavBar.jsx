@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { Lock, LogOut, ShoppingCart, UserCheck, UserPlus } from "lucide-react";
 import { useUserStore } from "../store/useUserStore";
+import { useCartStore } from "../store/useCartStore";
 
 const NavBar = () => {
   const { user, logout } = useUserStore();
+  const { cart } = useCartStore();
   const isAdmin = user?.role === "admin";
 
   return (
@@ -33,10 +35,13 @@ const NavBar = () => {
               className="inline-block mr-1 group-hover:text-neutral-200"
               size={20}
             />
+
             <span className="hidden sm:inline">Cart</span>
-            <span className="relative -top-3 -left-1 bg-neutral-300 text-stone-900 rounded-full px-2 py-0.5 text-xs">
-              3
-            </span>
+            {cart.length > 0 && (
+              <span className="relative -top-3 -left-1 bg-neutral-300 text-stone-900 rounded-full px-2 py-0.5 text-xs">
+                {cart.length}
+              </span>
+            )}
           </Link>
         )}
 

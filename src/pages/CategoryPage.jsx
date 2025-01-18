@@ -30,7 +30,7 @@ const CategoryPage = () => {
   }
   return (
     <div className="min-h-screen">
-      <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:py-20">
+      <div className="relative z-10 max-w-screen-xl mb-5 mx-auto px-4 sm:px-6 lg:py-10">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}

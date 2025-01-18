@@ -21,7 +21,7 @@ const HomePage = () => {
           Explore Our Categories
         </h1>
         <p className="text-center text-xl text-stone-400 mb-12">
-          Discover the latest eco-friendly trends in men&apos;s fashion;
+          Discover the latest eco-friendly trends in men&apos;s fashion.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {categories.map((category) => (

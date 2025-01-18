@@ -29,42 +29,44 @@ const Products = () => {
     >
       <table className="min-w-full divide-y divide-stone-300">
         <thead className="bg-stone-500">
-          <th
-            scope="col"
-            className="px-6 py-3 text-left text-xs font-medium text-stone-300 uppercase tracking-wider "
-          >
-            Product
-          </th>
-          <th
-            scope="col"
-            className="px-6 py-3 text-left text-xs font-medium text-stone-300 uppercase tracking-wider "
-          >
-            Price
-          </th>
-          <th
-            scope="col"
-            className="px-6 py-3 text-left text-xs font-medium text-stone-300 uppercase tracking-wider "
-          >
-            Category
-          </th>
-          <th
-            scope="col"
-            className="px-6 py-3 text-left text-xs font-medium text-stone-300 uppercase tracking-wider "
-          >
-            In Stock
-          </th>
-          <th
-            scope="col"
-            className="px-6 py-3 text-left text-xs font-medium text-stone-300 uppercase tracking-wider "
-          >
-            Recommended
-          </th>
-          <th
-            scope="col"
-            className="px-6 py-3 text-left text-xs font-medium text-stone-300 uppercase tracking-wider "
-          >
-            Actions
-          </th>
+          <tr>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-stone-300 uppercase tracking-wider "
+            >
+              Product
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-stone-300 uppercase tracking-wider "
+            >
+              Price
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-stone-300 uppercase tracking-wider "
+            >
+              Category
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-stone-300 uppercase tracking-wider "
+            >
+              In Stock
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-stone-300 uppercase tracking-wider "
+            >
+              Recommended
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-stone-300 uppercase tracking-wider "
+            >
+              Actions
+            </th>
+          </tr>
         </thead>
         <tbody className="bg-stone-600 divide-y divide-stone-300">
           {products.map((product) => (

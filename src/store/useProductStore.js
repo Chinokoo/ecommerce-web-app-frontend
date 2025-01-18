@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 export const useProductStore = create((set) => ({
   loading: false,
   products: [],
+  recommendations: [],
   setProducts: (products) => set({ products }),
 
   createProduct: async (product) => {
@@ -39,6 +40,17 @@ export const useProductStore = create((set) => ({
     try {
       const res = await axiosInstance.get("/products/category/" + category);
       set({ products: res.data.products });
+    } catch (error) {
+      toast.error(error.response.data.message);
+    } finally {
+      set({ loading: false });
+    }
+  },
+  getRecommendedProducts: async () => {
+    set({ loading: true });
+    try {
+      const res = await axiosInstance.get("/products/recommendations");
+      set({ recommendations: res.data.products });
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {

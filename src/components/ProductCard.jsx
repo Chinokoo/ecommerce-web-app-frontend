@@ -1,14 +1,28 @@
 import { ShoppingCart } from "lucide-react";
 import { PropTypes } from "prop-types";
+import toast from "react-hot-toast";
+import { useUserStore } from "./../store/useUserStore";
+import { useCartStore } from "./../store/useCartStore";
 
 const ProductCard = ({ product }) => {
-  const handleAddToCart = () => {};
+  const { user } = useUserStore();
+  const { addToCart } = useCartStore();
+
+  const handleAddToCart = () => {
+    if (!user) {
+      return toast.error("please log in to add this item to cart.", {
+        position: "top-right",
+      });
+    } else {
+      addToCart(product);
+    }
+  };
   return (
     <div className="flex w-full sm:w-[350px] relative flex-col overflow-hidden rounded-lg border border-stone-300 shadow-lg shadow-stone-500 mb-5">
-      <div className="relative w-full  flex h-90 max-h-60 overflow-hidden group ">
+      <div className="relative w-full  flex  max-h-60 overflow-hidden group ">
         <img
           src={product.image}
-          className="object-cover w-full h-full transition-transform duration-500 ease-in-out group-hover:scale-125"
+          className="object-contain  transition-transform duration-500 ease-in-out group-hover:scale-125"
           alt={product.name}
           loading="lazy"
         />
@@ -23,7 +37,7 @@ const ProductCard = ({ product }) => {
         </div>
         <button
           onClick={handleAddToCart}
-          className="flex items-center justify-center rounded-lg bg-stone-800 px-5 py-2.5 text-center text-sm font-medium "
+          className="flex items-center justify-center rounded-lg bg-stone-800 hover:bg-stone-500 px-5 py-2.5 text-center text-sm font-medium "
         >
           <ShoppingCart size={22} className="mr-2" />
           Add to Cart
