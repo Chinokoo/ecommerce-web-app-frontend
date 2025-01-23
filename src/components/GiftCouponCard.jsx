@@ -30,7 +30,7 @@ const GiftCouponCard = () => {
           <input
             type="text"
             id="voucher"
-            className="block w-full rounded-lg border border-stone-800 bg-stone-800 p-2.5 text-sm text-white placeholder-stone-100 focus:border-stone-500 focus:ring-stone-500"
+            className="block w-full rounded-lg border border-stone-800 bg-stone-600 p-2.5 text-sm text-white placeholder-stone-100 focus:border-stone-500 focus:ring-stone-500"
             placeholder="Enter your voucher code here"
             value={userInputCode}
             onChange={(e) => setUserInputCode(e.target.value)}

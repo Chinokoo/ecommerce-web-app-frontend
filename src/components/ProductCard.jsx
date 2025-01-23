@@ -21,8 +21,8 @@ const ProductCard = ({ product }) => {
     <div className="flex w-full sm:w-[350px] relative flex-col overflow-hidden rounded-lg border border-stone-300 shadow-lg shadow-stone-500 mb-5">
       <div className="relative w-full  flex  max-h-60 overflow-hidden group ">
         <img
+          className="object-contain w-full transition-transform duration-500 ease-in-out group-hover:scale-125"
           src={product.image}
-          className="object-contain  transition-transform duration-500 ease-in-out group-hover:scale-125"
           alt={product.name}
           loading="lazy"
         />

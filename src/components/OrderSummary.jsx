@@ -2,16 +2,18 @@ import { Link } from "react-router-dom";
 import { useCartStore } from "../store/useCartStore";
 import { motion } from "framer-motion";
 import { MoveRight } from "lucide-react";
-import { loadStripe } from "@stripe/stripe-js";
-
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHAPLE_KEY);
 
 const OrderSummary = () => {
-  const { total, subtotal, coupon, isCouponApplied } = useCartStore();
+  const { total, subtotal, coupon, isCouponApplied, checkOutPayment, loading } =
+    useCartStore();
   const savings = subtotal - total;
   const formattedTotal = total.toFixed(2);
   const formattedSubtotal = subtotal.toFixed(2);
   const formattedSavings = savings.toFixed(2);
+
+  const handlePayments = async () => {
+    await checkOutPayment();
+  };
 
   return (
     <motion.div
@@ -60,8 +62,9 @@ const OrderSummary = () => {
           className="flex w-full items-center justify-center rounded-lg bg-stone-800 px-5 py-2.5 text-sm font-medium text-stone-100 hover:bg-stone-500 focus:ring-4 focus:ring-stone-300"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={handlePayments}
         >
-          Proceed to Checkout
+          {loading ? "Loading . . ." : "Proceed to Checkout"}
         </motion.button>
         <div className="flex items-center justify-center gap-2">
           <span className="text-sm font-normal text-stone-600">or</span>

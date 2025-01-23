@@ -1,8 +1,12 @@
 import { create } from "zustand";
 import { toast } from "react-hot-toast";
 import { axiosInstance } from "../lib/axios";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 export const useCartStore = create((set, get) => ({
+  //states
   cart: [],
   coupon: null,
   sessionId: null,
@@ -12,6 +16,9 @@ export const useCartStore = create((set, get) => ({
   subtotal: 0,
   isCouponApplied: false,
 
+  //actions
+
+  //get cart items
   getCartItems: async () => {
     try {
       const res = await axiosInstance.get("/cart");
@@ -21,6 +28,8 @@ export const useCartStore = create((set, get) => ({
       toast.error(error.response.data.message);
     }
   },
+
+  //adding items to cart.
   addToCart: async (product) => {
     try {
       await axiosInstance.post("/cart", { productId: product._id });
@@ -43,6 +52,24 @@ export const useCartStore = create((set, get) => ({
       toast.error(error.response.data.message);
     }
   },
+  //clearing the cart
+  clearCart: async () => {
+    try {
+      set({
+        cart: [],
+        coupon: null,
+        isCouponApplied: false,
+        sessionId: null,
+        totalAmount: 0,
+        total: 0,
+        subtotal: 0,
+      });
+    } catch (error) {
+      toast.error(error.message);
+    }
+  },
+
+  //updating the carts
   updateQuantity: async (productId, quantity) => {
     try {
       if (quantity === 0) {
@@ -59,6 +86,8 @@ export const useCartStore = create((set, get) => ({
       toast.error(error.response.data.message);
     }
   },
+
+  //removing the carts
   removeFromCart: async (productId) => {
     try {
       await axiosInstance.delete("/cart", { data: { productId } });
@@ -71,21 +100,50 @@ export const useCartStore = create((set, get) => ({
       toast.error(error.response.data.message);
     }
   },
+
+  //checkout
   checkOutPayment: async () => {
+    const stripe = await stripePromise;
     const { cart, coupon } = get();
     set({ loading: true });
     try {
       const res = await axiosInstance.post(
         "/payments/create-checkout-session",
-        { products: cart, coupon: coupon ? coupon.code : null }
+        { products: cart, couponCode: coupon ? coupon.code : null }
       );
       set({ sessionId: res.data.id, totalAmount: res.data.totalAmount });
+      await stripe.redirectToCheckout({
+        sessionId: res.data.id,
+      });
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
       set({ loading: false });
     }
   },
+  paymentSuccessful: async (session_id) => {
+    set({ loading: true });
+    try {
+      const res = await axiosInstance.post("/payments/checkout-success", {
+        session_id: session_id,
+      });
+      set({
+        cart: [],
+        coupon: null,
+        sessionId: null,
+        totalAmount: 0,
+        total: 0,
+        subtotal: 0,
+        isCouponApplied: false,
+      });
+      toast.success(res.data.message);
+    } catch (error) {
+      toast.error(error.response.data.message);
+    } finally {
+      set({ loading: false });
+    }
+  },
+  //calculating the total
   calculateTotals: () => {
     const { cart, coupon } = get();
     const subtotal = cart.reduce(
