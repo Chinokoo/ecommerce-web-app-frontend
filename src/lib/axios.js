@@ -5,7 +5,7 @@ export const axiosInstance = axios.create({
     "https://ecommerce-web-app-y0xh.onrender.com/api",
     "http://localhost:3001/api",
   ],
-  withCredentials: true,
+  // withCredentials: true,
   headers: {
     "Content-Type": "application/json",
   },
