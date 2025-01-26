@@ -25,7 +25,7 @@ export const useUserStore = create((set, get) => ({
     } catch (error) {
       set({ loading: false, user: null });
       toast.error(
-        error.response.data.message || "An error occurred, try again!"
+        error?.response?.data?.message || "An error occurred, try again!"
       );
     }
   },
@@ -46,7 +46,7 @@ export const useUserStore = create((set, get) => ({
       set({ user: null });
       toast.success(res.data.message);
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error?.response?.data?.message);
     }
   },
 
@@ -57,7 +57,7 @@ export const useUserStore = create((set, get) => ({
       set({ user: res.data, checkingAuth: false });
     } catch (error) {
       set({ checkingAuth: false, user: null });
-      toast.error(error.response.data.message);
+      toast.error(error?.response?.data?.message);
     }
   },
   refreshToken: async () => {
