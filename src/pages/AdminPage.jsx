@@ -24,7 +24,7 @@ const AdminPage = () => {
 
   return (
     <div className="min-h-screen flex justify-center relative overflow-hidden">
-      <div className="w-full md:w-3/5 min-h-screen rounded-md   text-white">
+      <div className="w-full md:w-5/5 min-h-screen rounded-lg   text-white">
         <div className="relative z-10  container mx-auto px-4 py-6">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}

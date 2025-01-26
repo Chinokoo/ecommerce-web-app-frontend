@@ -91,4 +91,13 @@ export const useProductStore = create((set) => ({
       set({ loading: false });
     }
   },
+  getFeaturedProducts: async () => {
+    set({ loading: true });
+    try {
+      const res = await axiosInstance.get("/products/featured-products");
+      set({ products: res.data.products });
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  },
 }));

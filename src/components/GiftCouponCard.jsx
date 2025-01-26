@@ -1,16 +1,27 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCartStore } from "../store/useCartStore";
 
 const GiftCouponCard = () => {
   const [userInputCode, setUserInputCode] = useState("");
-  const { isCouponApplied, coupon } = useCartStore();
+  const { isCouponApplied, coupon, applyCoupon, getCoupon, removeCoupon } =
+    useCartStore();
 
-  const handleApplyCoupon = () => {
-    console.log(userInputCode);
+  useEffect(() => {
+    getCoupon();
+  }, [getCoupon]);
+
+  useEffect(() => {
+    if (coupon) setUserInputCode(coupon.code);
+  }, [coupon]);
+
+  const handleApplyCoupon = async () => {
+    if (!userInputCode) return;
+    await applyCoupon(userInputCode);
   };
-  const handleRemoveCoupon = () => {
-    console.log("coupon removed");
+  const handleRemoveCoupon = async () => {
+    await removeCoupon();
+    setUserInputCode("");
   };
   return (
     <motion.div
@@ -31,7 +42,6 @@ const GiftCouponCard = () => {
             type="text"
             id="voucher"
             className="block w-full rounded-lg border border-stone-800 bg-stone-600 p-2.5 text-sm text-white placeholder-stone-100 focus:border-stone-500 focus:ring-stone-500"
-            placeholder="Enter your voucher code here"
             value={userInputCode}
             onChange={(e) => setUserInputCode(e.target.value)}
             required
@@ -55,11 +65,13 @@ const GiftCouponCard = () => {
           </p>
           <motion.button
             type="button"
-            className="flex w-full items-center justify-center rounded-lg bg-stone-800 px-5 py-2.5 text-sm  font-medium text-white hover:bg-stone-500 focus:outline-none focus:ring-4 focus:ring-stone-300"
+            className="flex w-full items-center justify-center rounded-lg bg-stone-800 px-5 py-2.5 text-sm  font-medium text-white hover:bg-red-500 focus:outline-none focus:ring-4 focus:ring-stone-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleRemoveCoupon}
-          ></motion.button>
+          >
+            Remove Coupon
+          </motion.button>
         </div>
       )}
     </motion.div>
