@@ -11,5 +11,17 @@ export const axiosInstance = axios.create({
   },
 });
 
+// Add interceptor
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (!error.response) {
+      return Promise.reject({
+        response: { data: { message: "Network error occurred" } },
+      });
+    }
+    return Promise.reject(error);
+  }
+);
 //development
 //
