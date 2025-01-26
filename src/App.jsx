@@ -24,6 +24,7 @@ function App() {
   useEffect(() => {
     if (user) {
       getCartItems();
+      console.log(user);
     }
   }, [getCartItems, user]);
 
