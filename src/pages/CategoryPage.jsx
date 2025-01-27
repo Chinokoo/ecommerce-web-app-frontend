@@ -3,15 +3,20 @@ import { useProductStore } from "./../store/useProductStore";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import ProductCard from "./../components/ProductCard";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const CategoryPage = () => {
-  const { getProductsByCategory, products } = useProductStore();
+  const { getProductsByCategory, products, loading } = useProductStore();
 
   const { category } = useParams();
 
   useEffect(() => {
     getProductsByCategory(category);
   }, [getProductsByCategory, category]);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   if (products.length === 0) {
     return (
