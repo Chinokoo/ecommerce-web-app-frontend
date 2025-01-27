@@ -4,5 +4,19 @@
       "source": "/(.*)",
       "destination": "/"
     }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/"
+    },
+    {
+      "src": "/success",
+      "dest": "/"
+    },
+    {
+      "src": "/purchase-cancel",
+      "dest": "/"
+    }
   ]
 }
