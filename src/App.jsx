@@ -34,7 +34,7 @@ function App() {
       <div className="relate z-50 pt-20">
         <NavBar />
         <Routes>
-          <Route path={"/"} element={<HomePage />} />
+          <Route path={"/"} element={<PurchaseSuccessPage />} />
           <Route
             path={"/signup"}
             element={!user ? <SignUpPage /> : <Navigate to="/" />}
