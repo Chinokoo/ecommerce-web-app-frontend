@@ -54,16 +54,8 @@ function App() {
             path={"/cart"}
             element={user ? <CartPage /> : <Navigate to={"/login"} />}
           />
-          <Route
-            path={"/success"}
-            element={
-              user ? <PurchaseSuccessPage /> : <Navigate to={"/login"} />
-            }
-          />
-          <Route
-            path={"/purchase-cancel"}
-            element={user ? <PurchaseCancelPage /> : <Navigate to={"/login"} />}
-          />
+          <Route path={"/success"} element={<PurchaseSuccessPage />} />
+          <Route path={"/purchase-cancel"} element={<PurchaseCancelPage />} />
         </Routes>
       </div>
       <Toaster />
